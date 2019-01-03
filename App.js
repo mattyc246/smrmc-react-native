@@ -1,28 +1,124 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView } from 'react-native';
-import Body from './Body.js';
-import RandomQuote from './RandomQuote.js';
+import { ScrollView, 
+         StyleSheet,
+         View,
+         Button,
+         SafeAreaView,
+         KeyboardAvoidingView,
+         AsyncStorage } from 'react-native';
+import HomePage from './HomePage.js';
+import LoginPage from './LoginPage.js';
+import LoadingScreen from './LoadingScreen.js';
 
 export default class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: null,
+      isLoading: false
+    }
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  componentDidMount(){
+    setUser = async() => {
+      try{
+        const value = await AsyncStorage.getItem('token');
+        if(value != null){
+          this.setState({
+            currentUser: value
+          })
+          setTimeout(() => {
+            this.setState({
+              isLoading: false
+            })
+          }, 2000)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    setUser() 
+  }
+
+  handleLoginSubmit(username, password) {
+    this.setState({
+      isLoading: true
+    })
+    let body = JSON.stringify({ user: { username: username, password: password } })
+    fetch('https://smrmc.herokuapp.com/api/v1/session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: body,
+    }).then((response) => { return response.json() })
+    .then((data) => {
+      storeData = async (data) => {
+        try {
+          await AsyncStorage.setItem('token', data.token);
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      storeData(data)
+      retrieveData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('token');
+          if (value != null) {
+            setTimeout(() => {
+              this.setState({
+                currentUser: value,
+                isLoading: false
+              })
+            }, 2000);
+          }
+        } catch (error) {
+          alert('Error! Please try again!')
+        }
+      }
+      retrieveData()
+    })
+  }
+  
+  handleLogout() {
+    this.setState({
+      isLoading: true
+    })
+    clearStorage = async () => {
+      try {
+        await AsyncStorage.removeItem('token');
+        setTimeout(() => {
+          this.setState({
+            currentUser: null,
+            isLoading: false
+          })
+        }, 2000);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    clearStorage();
+  }
+
   render() {
+    let mainScreen = this.state.currentUser
+      ? <View>
+          <HomePage />
+          <View style={styles.logoutButton}><Button onPress={this.handleLogout} title="Logout" color="white" /></View>
+        </View>
+      : <LoginPage handleLoginSubmit={this.handleLoginSubmit} />
+    let loadingState = !this.state.isLoading
+      ? mainScreen
+      : <LoadingScreen />
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
         <KeyboardAvoidingView behavior="padding" enabled>
           <ScrollView bounces={false}>
             <View style={styles.container}>
-              <View>
-                <View style={styles.mainBox}>
-                    <Text style={styles.headerText}>Self Management App</Text>
-                    <Text>---------------------------------------------------</Text>
-                    <Text style={styles.secondText}>Manage your day to day tasks. Add, update and delete them as you require.</Text>
-                    <Text></Text>
-                    <Text style={styles.secondText}>Your personal task management in the cloud.</Text>
-                </View>
-                <View>
-                  <RandomQuote />
-                </View>
-              </View>
-              <Body />
+              {loadingState}
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -40,19 +136,13 @@ const styles = StyleSheet.create({
     paddingLeft: '5%',
     paddingRight: '5%' , 
   },
-  mainBox: {
-    backgroundColor: '#FFA631',
-    padding: '5%',
-    borderColor: 'black',
+  logoutButton: {
+    backgroundColor: '#C91F37',
+    borderColor: 'white',
+    width: 380,
+    marginTop: 20,
+    marginBottom: 10,
     borderRadius: 10,
-    marginTop: 30,
-    height: 350,
-  },
-  headerText: {
-    fontSize: 42,
-    fontWeight: 'bold',
-  },
-  secondText: {
-    fontSize: 20,
+    color: 'white'
   }
 });
