@@ -6,6 +6,7 @@ import { ScrollView,
          SafeAreaView,
          KeyboardAvoidingView,
          AsyncStorage } from 'react-native';
+import Dimensions from 'Dimensions';
 import HomePage from './HomePage.js';
 import LoginPage from './LoginPage.js';
 import LoadingScreen from './LoadingScreen.js';
@@ -90,9 +91,11 @@ export default class App extends React.Component {
     clearStorage = async () => {
       try {
         await AsyncStorage.removeItem('token');
+        this.setState({
+          currentUser: null,
+        })
         setTimeout(() => {
           this.setState({
-            currentUser: null,
             isLoading: false
           })
         }, 2000);
@@ -106,8 +109,12 @@ export default class App extends React.Component {
   render() {
     let mainScreen = this.state.currentUser
       ? <View>
-          <HomePage />
-          <View style={styles.logoutButton}><Button onPress={this.handleLogout} title="Logout" color="white" /></View>
+          <View style={styles.navigatorBox}>
+            <HomePage />
+            <View style={styles.logoutButton}>
+              <Button onPress={() => this.handleLogout()} title="Logout" color="white" />
+            </View>
+          </View>
         </View>
       : <LoginPage handleLoginSubmit={this.handleLoginSubmit} />
     let loadingState = !this.state.isLoading
@@ -127,6 +134,8 @@ export default class App extends React.Component {
   }
 }
 
+const {width, height} = Dimensions.get('window'); 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -136,13 +145,14 @@ const styles = StyleSheet.create({
     paddingLeft: '5%',
     paddingRight: '5%' , 
   },
+  navigatorBox: {
+    width: width,
+    height: height * 0.97
+  },
   logoutButton: {
     backgroundColor: '#C91F37',
     borderColor: 'white',
-    width: 380,
-    marginTop: 20,
-    marginBottom: 10,
-    borderRadius: 10,
+    width: width,
     color: 'white'
-  }
+  },
 });

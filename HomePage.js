@@ -1,18 +1,18 @@
-import React from 'react';
-import Body from './Body.js';
-// import RandomQuote from './RandomQuote.js';
+// import React from 'react';
+import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
+import DetailsScreen from './screens/DetailsScreen.js';
+import HomeScreen from './screens/HomeScreen.js';
 
-class HomePage extends React.Component {
-  static navigationOptions = {
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+  Details: {
+    screen: DetailsScreen,
+  },
+}, {
+    initialRouteName: 'Home',
+  });
 
-  }
 
-  render(){
-    return(
-      null
-      // <RandomQuote />
-    )
-  }
-}
-
-export default HomePage;
+export default createAppContainer(AppNavigator);

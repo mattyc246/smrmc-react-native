@@ -12,7 +12,6 @@ export default class Body extends React.Component {
       currentUser: null,
       isLoading: false
     }
-    this.handleLogout = this.handleLogout.bind(this)
   };
 
   componentDidMount(){
