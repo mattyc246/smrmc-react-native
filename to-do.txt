@@ -1,0 +1,7 @@
+- Get the UI all full settled first
+- Seperate into page with the navigation bar
+- Login Screen or Main Menu
+- Main Menu - Add Task or View Tasks
+- Add Task - Create new task
+- View Tasks - Urgent, Complete, Pending, Incomplete
+- Have them to be swipeable cards
