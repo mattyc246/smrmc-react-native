@@ -1,28 +1,32 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import Body from './Body.js';
 import RandomQuote from './RandomQuote.js';
 
 export default class App extends React.Component {
   render() {
     return (
-      <ScrollView bounces={false}>
-        <View style={styles.container}>
-          <View>
-            <View style={styles.mainBox}>
-                <Text style={styles.headerText}>Self Management App</Text>
-                <Text>---------------------------------------------------</Text>
-                <Text style={styles.secondText}>Manage your day to day tasks. Add, update and delete them as you require.</Text>
-                <Text></Text>
-                <Text style={styles.secondText}>Your personal task management in the cloud.</Text>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
+        <KeyboardAvoidingView behavior="padding" enabled>
+          <ScrollView bounces={false}>
+            <View style={styles.container}>
+              <View>
+                <View style={styles.mainBox}>
+                    <Text style={styles.headerText}>Self Management App</Text>
+                    <Text>---------------------------------------------------</Text>
+                    <Text style={styles.secondText}>Manage your day to day tasks. Add, update and delete them as you require.</Text>
+                    <Text></Text>
+                    <Text style={styles.secondText}>Your personal task management in the cloud.</Text>
+                </View>
+                <View>
+                  <RandomQuote />
+                </View>
+              </View>
+              <Body />
             </View>
-            <View>
-              <RandomQuote />
-            </View>
-          </View>
-          <Body />
-        </View>
-      </ScrollView>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
     );
   }
 }

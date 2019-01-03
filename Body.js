@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, Image, StyleSheet } from 'react-native';
+import { View, Button, Image, StyleSheet } from 'react-native';
 import AllToDoList from './AllToDoList.js';
 import LoginBox from './LoginBox.js';
 import { AsyncStorage } from 'react-native';
