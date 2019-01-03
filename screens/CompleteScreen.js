@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Button, Text } from 'react-native';
 
-export default class AddTaskScreen extends React.Component {
+export default class CompleteScreen extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Add Task',
+    headerTitle: 'Complete',
     headerStyle: {
       backgroundColor: '#455A64'
     }
@@ -12,7 +12,7 @@ export default class AddTaskScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Add Task Screen</Text>
+        <Text>Complete Screen</Text>
         <Button
           title="Go to Home"
           onPress={() => this.props.navigation.goBack()}

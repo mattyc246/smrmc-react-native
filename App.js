@@ -139,7 +139,7 @@ const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#5D8CAE',
+    backgroundColor: '#263238',
     alignItems: 'center',
     justifyContent: 'center',
     paddingLeft: '5%',
@@ -151,7 +151,6 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     backgroundColor: '#C91F37',
-    borderColor: 'white',
     width: width,
     color: 'white'
   },

@@ -31,7 +31,7 @@ export default class RandomQuote extends React.Component {
             <Text></Text>
             <Text style={styles.secondText}>{quote.quote}</Text>
             <Text></Text>
-            <Text>Author: {quote.author}</Text>
+            <Text style={styles.authorText}>Author: {quote.author}</Text>
           </View>
         </View>
       )
@@ -44,9 +44,10 @@ export default class RandomQuote extends React.Component {
 
 const styles = StyleSheet.create({
   quoteBox: {
-    backgroundColor: '#2ABB9B',
+    backgroundColor: '#212121',
     padding: '5%',
-    borderColor: 'black',
+    borderColor: 'white',
+    borderWidth: 1,
     borderRadius: 10,
     marginTop: 20,
     height: 300,
@@ -54,9 +55,14 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 25,
     fontWeight: 'bold',
+    color: 'white'
   },
   secondText: {
     fontSize: 20,
+    color: 'white'
+  },
+  authorText: {
+    color: 'white'
   },
   emptySpace: {
     height: 130,
