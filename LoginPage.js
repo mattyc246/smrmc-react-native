@@ -36,9 +36,10 @@ export default class LoginPage extends React.Component {
 
 const styles = StyleSheet.create({
   mainBox: {
-    backgroundColor: '#FFA631',
+    backgroundColor: '#212121',
     padding: '5%',
-    borderColor: 'black',
+    borderColor: 'white',
+    borderWidth: 0.5,
     borderRadius: 10,
     marginTop: 30,
     height: 350,
@@ -46,17 +47,20 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 42,
     fontWeight: 'bold',
+    color: 'white'
   },
   secondText: {
     fontSize: 20,
+    color: 'white'
   },
   loginForm: {
-    backgroundColor: '#6C7A89',
+    backgroundColor: '#F5F5F5',
     borderColor: 'black',
+    borderWidth: 0.5,
     borderRadius: 10,
     marginTop: 20,
     marginBottom: 20,
-    height: 300,
+    height: 290,
     width: 370,
     padding: '5%',
   },
@@ -66,18 +70,20 @@ const styles = StyleSheet.create({
   },
   inputField: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: 'black',
     borderRadius: 10,
     borderWidth: 1,
     paddingLeft: 3,
     marginTop: 15,
-    backgroundColor: 'white'
+    backgroundColor: '#BDBDBD'
   },
   loginButton: {
     backgroundColor: '#C91F37',
     borderColor: 'white',
     width: 333,
-    marginTop: 20,
+    height: 60,
+    padding: '3%',
+    marginTop: 30,
     borderRadius: 10,
     color: 'white'
   }

@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     fontStyle: 'italic',
+    fontWeight: 'bold',
     color: 'black',
     fontSize: 25
   }
