@@ -37,7 +37,7 @@ export default class NewTask extends React.Component {
       : <View style={styles.featureButton}><Button color='white' onPress={() => this.setState({ chooseStatus: true })} title="Choose Status" /></View>
   
     return (
-    <View style={styles.taskBox}>
+    <View>
       <Text style={styles.headerText}>Add New Task:</Text>
       <TextInput style={styles.inputBox} onChangeText={(value) => this.setState({taskTitle: value})} placeholder='Enter a title'/>
       <TextInput style={styles.inputBox} onChangeText={(value) => this.setState({taskDescription: value})} placeholder='Enter a description' />

@@ -1,5 +1,4 @@
 import React from 'react';
-import NewTask from './NewTask.js';
 import Task from './Task.js';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -10,8 +9,6 @@ export default class AllToDoList extends React.Component {
     this.state = {
       todolist: []
     };
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
-    this.addNewTask = this.addNewTask.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.deleteTask = this.deleteTask.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
@@ -29,6 +26,7 @@ export default class AllToDoList extends React.Component {
     })
     .then((response) => { if(response.statusText != 'No Content'){return response.json() }})
     .then((data) => {
+      console.log(data)
       if(data){
         this.setState({ todolist: data })
       }
@@ -72,29 +70,10 @@ export default class AllToDoList extends React.Component {
     })
   }
 
-  handleFormSubmit(title, description, status, completionDate) {
-    let body = JSON.stringify({ todolist: { title: title, description: description, status: status, completion_date: completionDate } })
-    fetch('https://smrmc.herokuapp.com/api/v1/todolist', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.props.currentUser}`
-      },
-      body: body,
-    }).then((response) => { return response.json() })
-      .then((task) => { this.addNewTask(task) })
-  }
-
-  addNewTask(task) {
-    this.setState({
-      todolist: this.state.todolist.concat(task)
-    })
-  }
-
   render() {
 
-    var urgentList = this.state.todolist.map((task, index) => {
-      if(task.status == 'URGENT!'){
+    let taskList = this.state.todolist.map((task, index) => {
+      if(task.status == this.props.listType){
         return (
           <View key={index}>
             <View key={task.id}>
@@ -104,95 +83,12 @@ export default class AllToDoList extends React.Component {
         )
       }
     })
-
-    var incompleteList = this.state.todolist.map((task, index) => {
-      if (task.status == 'Incomplete') {
-        return (
-          <View key={index}>
-            <View key={task.id}>
-              <Task task={task} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate} />
-            </View>
-          </View>
-        )
-      }
-    })
-
-    var pendingList = this.state.todolist.map((task, index) => {
-      if (task.status == 'Pending') {
-        return (
-          <View key={index}>
-            <View key={task.id}>
-              <Task task={task} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate} />
-            </View>
-          </View>
-        )
-      }
-    })
-
-    var completeList = this.state.todolist.map((task, index) => {
-      if (task.status == 'Complete') {
-        return (
-          <View key={index}>
-            <View key={task.id}>
-              <Task task={task} handleDelete={this.handleDelete} handleUpdate={this.handleUpdate} />
-            </View>
-          </View>
-        )
-      }
-    })
-
     return (
       <View>
-        <View style={styles.instructionBox}>
-          <Text style={styles.headerText}>Getting Started:</Text>
-          <Text></Text>
-          <Text style={styles.secondText}>There are 4 categories of tasks available: Urgent, Incomplete, Complete and Pending.</Text>
-          <Text style={styles.secondText}>Choose your category and they will be automatically sorted for you.</Text>
-          <Text style={styles.secondText}>It's as simple as that.</Text>
-          <Text></Text>
-          <Text style={styles.secondText}>Click 'Submit' to add the new task.</Text>
-        </View>
         <View>
-          <NewTask handleFormSubmit={this.handleFormSubmit} />
-        </View>
-        <View>
-          <View style={styles.urgentBox}>
-            <Text style={styles.headerText}>Urgent Tasks:</Text>
-            <Text></Text>
-            <View>
-              {urgentList}
-            </View>
-          </View>
-        </View>
-        <View>
-          <View style={styles.incompleteBox}>
-            <Text style={styles.headerText}>Incomplete Tasks:</Text>
-            <Text></Text>
-            <View>
-              {incompleteList}
-            </View>
-          </View>
-        </View>
-        <View>
-          <View style={styles.pendingBox}>
-            <Text style={styles.headerText}>Pending Tasks:</Text>
-            <Text></Text>
-            <View>
-              {pendingList}
-            </View>
-          </View>
-        </View>
-        <View>
-          <View style={styles.completeBox}>
-            <Text style={styles.headerText}>Complete Tasks:</Text>
-            <Text></Text>
-            <View>
-              {completeList}
-            </View>
-          </View>
+          {taskList}
         </View>
       </View>
-      
     );
 
   };
