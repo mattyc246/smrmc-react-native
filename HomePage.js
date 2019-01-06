@@ -1,6 +1,6 @@
-// import React from 'react';
+import React from 'react';
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation'; // Version can be specified in package.json
-import DetailsScreen from './screens/DetailsScreen.js';
+import AddTaskScreen from './screens/AddTaskScreen.js';
 import HomeScreen from './screens/HomeScreen.js';
 import UrgentScreen from './screens/UrgentScreen.js';
 import IncompleteScreen from './screens/IncompleteScreen.js';
@@ -12,7 +12,7 @@ const AppNavigator = createStackNavigator({
     screen: HomeScreen,
   },
   AddTask: {
-    screen: DetailsScreen,
+    screen: AddTaskScreen,
   },
   Urgent: {
     screen: UrgentScreen,

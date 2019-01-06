@@ -110,7 +110,7 @@ export default class App extends React.Component {
     let mainScreen = this.state.currentUser
       ? <View>
           <View style={styles.navigatorBox}>
-            <HomePage />
+            <HomePage currentUser={this.state.currentUser} />
             <View style={styles.logoutButton}>
               <Button onPress={() => this.handleLogout()} title="Logout" color="white" />
             </View>
