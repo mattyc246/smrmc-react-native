@@ -4,19 +4,30 @@ import RandomQuote from '../RandomQuote.js';
 
 export default class HomeScreen extends React.Component {
   
-  static navigationOptions = {
-    headerTitle: 'Home',
-    headerStyle: {
-      backgroundColor: '#455A64'
-    }
-  };
-
   constructor(props){
     super(props);
     this.state = {
       currentUser: null
     }
   }
+
+  static navigationOptions = ({navigation}) => {
+    return{
+
+      headerTitle: 'Home',
+      headerStyle: {
+        backgroundColor: '#455A64'
+      },
+      headerRight: (
+        <Button
+          onPress={() => navigation.navigate('Info')}
+          title="Info"
+          color="#fff"
+        />
+      )
+    }
+  };
+
 
   componentDidMount(){
     setUser = async () => {

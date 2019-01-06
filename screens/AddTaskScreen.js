@@ -17,7 +17,6 @@ export default class AddTaskScreen extends React.Component {
 
   handleFormSubmit(title, description, status, completionDate) {
     const currentUser = this.props.navigation.getParam('currentUser');
-    console.log(currentUser)
     let body = JSON.stringify({ todolist: { title: title, description: description, status: status, completion_date: completionDate } })
     fetch('https://smrmc.herokuapp.com/api/v1/todolist', {
       method: 'POST',
