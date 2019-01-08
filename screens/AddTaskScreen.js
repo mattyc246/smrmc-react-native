@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import AddTask from '../NewTask.js';
 import NewTaskIcon from '../icons/iOSNewTask.js';
 import HomeIcon from '../icons/iOSHomeIcon.js';
@@ -39,7 +39,14 @@ export default class AddTaskScreen extends React.Component {
       },
       body: body,
     }).then((response) => { return response.json() })
-      .then((task) => { this.props.navigation.goBack() })
+      .then((task) => Alert.alert(
+        'Task Added to ' + task[0].status,
+        'To be completed by: ' + task[0].completion_date,
+        [
+          { text: 'OK', onPress: () => this.props.navigation.goBack() },
+        ],
+        { cancelable: false }
+      ))
   }
 
   render() {
