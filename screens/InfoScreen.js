@@ -1,14 +1,24 @@
 import React from 'react';
-import { View, Button, Text, StyleSheet} from 'react-native';
-import AllToDoList from '../AllToDoList.js';
-import Dimensions from 'Dimensions';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import BackIcon from '../icons/iOSBackArrow.js';
+import HomeIcon from '../icons/iOSHomeIcon.js';
 
 export default class InfoScreen extends React.Component {
 
-  static navigationOptions = {
-    headerTitle: 'Information',
-    headerStyle: {
-      backgroundColor: '#464646'
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: 'Information',
+      headerStyle: {
+        backgroundColor: '#464646'
+      },
+      headerLeft: (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <BackIcon />
+        </TouchableOpacity>
+      ),
+      headerLeftContainerStyle: {
+        paddingLeft: 15
+      }
     }
   };
 
@@ -17,10 +27,9 @@ export default class InfoScreen extends React.Component {
     return (
       <View style={styles.mainPage}>
         <Text>Information!</Text>
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.goBack()}
-        />
+        <TouchableOpacity style={styles.homeButton} onPress={() => this.props.navigation.goBack()}>
+          <HomeIcon />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -33,5 +42,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#2d2d2d',
     padding: '3%'
+  },
+  homeButton: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: 20
   }
 })

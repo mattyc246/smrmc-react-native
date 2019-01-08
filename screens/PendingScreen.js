@@ -1,15 +1,27 @@
 import React from 'react';
-import { View, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import AllToDoList from '../AllToDoList.js';
 import Dimensions from 'Dimensions';
 import PendingIcon from '../icons/iOSPauseIcon.js';
+import BackIcon from '../icons/iOSBackArrow.js';
+import HomeIcon from '../icons/iOSHomeIcon.js';
 
 export default class PendingScreen extends React.Component {
   
-  static navigationOptions = {
-    headerTitle: <PendingIcon />,
-    headerStyle: {
-      backgroundColor: '#464646'
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <PendingIcon />,
+      headerStyle: {
+        backgroundColor: '#464646'
+      },
+      headerLeft: (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <BackIcon />
+        </TouchableOpacity>
+      ),
+      headerLeftContainerStyle: {
+        paddingLeft: 15
+      }
     }
   };
 
@@ -19,10 +31,9 @@ export default class PendingScreen extends React.Component {
       <View style={styles.mainPage}>
         <ScrollView>
           <AllToDoList currentUser={currentUser} listType={"Pending"} />
-          <Button
-            title="Go to Home"
-            onPress={() => this.props.navigation.goBack()}
-          />
+          <TouchableOpacity style={styles.homeButton} onPress={() => this.props.navigation.goBack()}>
+            <HomeIcon />
+          </TouchableOpacity>
         </ScrollView>
       </View>
     );
@@ -36,5 +47,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#2d2d2d',
     height: height * 0.88,
     padding: '3%'
+  },
+  homeButton: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: 20
   }
 })

@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Button, StyleSheet, AsyncStorage } from 'react-native';
+import { View, Button, StyleSheet, AsyncStorage, TouchableOpacity } from 'react-native';
 import HomeIcon from '../icons/iOSHomeIcon.js';
 import RandomQuote from '../RandomQuote.js';
+import InfoIcon from '../icons/iOSInfoIcon.js';
 
 export default class HomeScreen extends React.Component {
   
@@ -21,8 +22,13 @@ export default class HomeScreen extends React.Component {
         backgroundColor: '#464646',
       },
       headerRight: (
-        <Button title="Info" onPress={() => navigation.navigate('Info')} />
-      )
+        <TouchableOpacity onPress={() => navigation.navigate('Info')} >
+          <InfoIcon />
+        </TouchableOpacity>
+      ),
+      headerRightContainerStyle: {
+        paddingRight: 15
+      }
     }
   };
 
