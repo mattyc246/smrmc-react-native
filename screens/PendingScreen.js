@@ -2,13 +2,14 @@ import React from 'react';
 import { View, Button, StyleSheet, ScrollView } from 'react-native';
 import AllToDoList from '../AllToDoList.js';
 import Dimensions from 'Dimensions';
+import PendingIcon from '../icons/iOSPauseIcon.js';
 
 export default class PendingScreen extends React.Component {
   
   static navigationOptions = {
-    headerTitle: 'Pending',
+    headerTitle: <PendingIcon />,
     headerStyle: {
-      backgroundColor: '#455A64'
+      backgroundColor: '#464646'
     }
   };
 
@@ -32,8 +33,8 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   mainPage: {
-    backgroundColor: '#e53935',
+    backgroundColor: '#2d2d2d',
     height: height * 0.88,
-    padding: '5%'
+    padding: '3%'
   }
 })

@@ -3,7 +3,6 @@ import { ScrollView,
          StyleSheet,
          View,
          Button,
-         SafeAreaView,
          KeyboardAvoidingView,
          AsyncStorage } from 'react-native';
 import Dimensions from 'Dimensions';
@@ -121,7 +120,6 @@ export default class App extends React.Component {
       ? mainScreen
       : <LoadingScreen />
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: 'black' }}>
         <KeyboardAvoidingView behavior="padding" enabled>
           <ScrollView bounces={false}>
             <View style={styles.container}>
@@ -129,7 +127,6 @@ export default class App extends React.Component {
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
-      </SafeAreaView>
     );
   }
 }
@@ -139,15 +136,14 @@ const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#263238',
+    height: height,
+    backgroundColor: '#2d2d2d',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingLeft: '5%',
-    paddingRight: '5%' , 
   },
   navigatorBox: {
     width: width,
-    height: height * 0.97
+    height: height
   },
   logoutButton: {
     backgroundColor: '#C91F37',

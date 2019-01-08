@@ -44,25 +44,25 @@ export default class RandomQuote extends React.Component {
 
 const styles = StyleSheet.create({
   quoteBox: {
-    backgroundColor: '#212121',
+    backgroundColor: '#1abc9c',
+    borderRadius: 5,
     padding: '5%',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 10,
-    marginTop: 20,
-    height: 300,
+    height: 287,
+    marginBottom: 5,
+    marginLeft: 5,
+    marginRight: 5
   },
   headerText: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'black'
   },
   secondText: {
     fontSize: 20,
-    color: 'white'
+    color: 'black'
   },
   authorText: {
-    color: 'white'
+    color: 'black'
   },
   emptySpace: {
     height: 130,

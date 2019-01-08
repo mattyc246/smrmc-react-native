@@ -33,6 +33,8 @@ const AppNavigator = createStackNavigator({
 
 }, {
     initialRouteName: 'Home',
+    mode: 'modal',
+    headerMode: 'float'
   });
 
 

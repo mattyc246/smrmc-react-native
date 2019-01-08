@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Button, StyleSheet, AsyncStorage } from 'react-native';
+import HomeIcon from '../icons/iOSHomeIcon.js';
 import RandomQuote from '../RandomQuote.js';
 
 export default class HomeScreen extends React.Component {
@@ -10,20 +11,17 @@ export default class HomeScreen extends React.Component {
       currentUser: null
     }
   }
+  
 
   static navigationOptions = ({navigation}) => {
     return{
 
-      headerTitle: 'Home',
+      headerTitle: <HomeIcon />,
       headerStyle: {
-        backgroundColor: '#455A64'
+        backgroundColor: '#464646',
       },
       headerRight: (
-        <Button
-          onPress={() => navigation.navigate('Info')}
-          title="Info"
-          color="#fff"
-        />
+        <Button title="Info" onPress={() => navigation.navigate('Info')} />
       )
     }
   };
@@ -51,35 +49,35 @@ export default class HomeScreen extends React.Component {
         <RandomQuote />
         <View style={styles.addTaskButton}>
           <Button
-            color='white'
+            color="#16a085"
             title="Add Task"
             onPress={() => this.props.navigation.navigate('AddTask', { currentUser: this.state.currentUser })}
             />
         </View>
         <View style={styles.urgentButton}>
           <Button
-            color="white"
+            color="#c0392b"
             title="Urgent Tasks"
             onPress={() => this.props.navigation.navigate('Urgent', { currentUser: this.state.currentUser })}
           />
         </View>
         <View style={styles.incompleteButton}>
           <Button
-            color="white"
+            color="#2980b9"
             title="Incomplete Tasks"
             onPress={() => this.props.navigation.navigate('Incomplete', { currentUser: this.state.currentUser })}
           />
         </View>
         <View style={styles.pendingButton}>
           <Button
-            color="white"
+            color="#f1c40f"
             title="Pending Tasks"
             onPress={() => this.props.navigation.navigate('Pending', { currentUser: this.state.currentUser })}
           />
         </View>
         <View style={styles.completeButton}>
           <Button
-            color="white"
+            color="#27ae60"
             title="Complete Tasks"
             onPress={() => this.props.navigation.navigate('Complete', { currentUser: this.state.currentUser })}
           />
@@ -92,49 +90,48 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#263238',
-    paddingLeft: '5%',
-    paddingRight: '5%',
+    backgroundColor: '#2d2d2d',
+    padding: '3%'
   },
   addTaskButton: {
-    backgroundColor: '#37474F',
-    height: 40,
-    marginTop: 15,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'white'
+    backgroundColor: '#32393d',
+    height: 55,
+    margin: 5,
+    borderRadius: 5,
+    borderColor: 'black',
+    paddingTop: 10
   },
   urgentButton: {
-    backgroundColor: '#37474F',
-    height: 40,
-    marginTop: 15,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'white'
+    backgroundColor: '#32393d',
+    height: 55,
+    margin: 5,
+    borderRadius: 5,
+    borderColor: 'black',
+    paddingTop: 10
   },
   incompleteButton: {
-    backgroundColor: '#37474F',
-    height: 40,
-    marginTop: 15,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'white'
+    backgroundColor: '#32393d',
+    height: 55,
+    margin: 5,
+    borderRadius: 5,
+    borderColor: 'black',
+    paddingTop: 10
   },
   pendingButton: {
-    backgroundColor: '#37474F',
-    height: 40,
-    marginTop: 15,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'white'
+    backgroundColor: '#32393d',
+    height: 55,
+    margin: 5,
+    borderRadius: 5,
+    borderColor: 'black',
+    paddingTop: 10
   },
   completeButton: {
-    backgroundColor: '#37474F',
-    height: 40,
-    marginTop: 15,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'white'
+    backgroundColor: '#32393d',
+    height: 55,
+    margin: 5,
+    borderRadius: 5,
+    borderColor: 'black',
+    paddingTop: 10
   }
   
 })

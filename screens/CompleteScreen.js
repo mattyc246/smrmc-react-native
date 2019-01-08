@@ -2,14 +2,15 @@ import React from 'react';
 import { View, Button, StyleSheet, ScrollView } from 'react-native';
 import AllToDoList from '../AllToDoList.js';
 import Dimensions from 'Dimensions';
+import CompleteIcon from '../icons/iOSCompleteIcon.js';
 
 export default class CompleteScreen extends React.Component {
 
   
   static navigationOptions = {
-    headerTitle: 'Complete',
+    headerTitle: <CompleteIcon />,
     headerStyle: {
-      backgroundColor: '#455A64'
+      backgroundColor: '#464646'
     }
   };
   
@@ -33,8 +34,8 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   mainPage: {
-    backgroundColor: '#e53935',
+    backgroundColor: '#2d2d2d',
     height: height * 0.88,
-    padding: '5%'
+    padding: '3%'
   }
 })

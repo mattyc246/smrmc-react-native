@@ -2,12 +2,13 @@ import React from 'react';
 import { View, Button, Text, ScrollView, StyleSheet } from 'react-native';
 import Dimensions from 'Dimensions';
 import AllToDoList from '../AllToDoList.js';
+import SpeedIcon from '../icons/iOSUrgentIcon.js';
 
 export default class UrgentScreen extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Urgent',
+    headerTitle: <SpeedIcon />,
     headerStyle: {
-      backgroundColor: '#455A64'
+      backgroundColor: '#464646'
     }
   };
 
@@ -31,8 +32,8 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   mainPage: {
-    backgroundColor: '#e53935',
+    backgroundColor: '#2d2d2d',
     height: height * 0.88,
-    padding: '5%'
+    padding: '3%'
   }
 })

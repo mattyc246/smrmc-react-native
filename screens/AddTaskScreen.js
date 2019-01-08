@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Button, Text, StyleSheet } from 'react-native';
 import AddTask from '../NewTask.js';
+import AddNoteIcon from '../icons/AddNoteIcon.js';
 
 export default class AddTaskScreen extends React.Component {
   static navigationOptions = {
-    headerTitle: 'Add Task',
+    headerTitle: <AddNoteIcon/> ,
     headerStyle: {
-      backgroundColor: '#455A64'
+      backgroundColor: '#464646'
     }
   };
 
@@ -47,8 +48,8 @@ export default class AddTaskScreen extends React.Component {
 
 const styles = StyleSheet.create({
   newTaskBox: {
-    padding: '5%',
     height: '100%',
-    backgroundColor: '#263238'
+    backgroundColor: '#2d2d2d',
+    padding: '3%'
   }
 })

@@ -8,7 +8,7 @@ export default class InfoScreen extends React.Component {
   static navigationOptions = {
     headerTitle: 'Information',
     headerStyle: {
-      backgroundColor: '#455A64'
+      backgroundColor: '#464646'
     }
   };
 
@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
   mainPage:{
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '#2d2d2d',
+    padding: '3%'
   }
 })

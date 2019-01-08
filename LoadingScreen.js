@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     paddingRight: '5%',
   },
   loadingText: {
+    fontFamily: 'Arial',
     fontStyle: 'italic',
     fontWeight: 'bold',
     color: 'black',
