@@ -1,23 +1,35 @@
 import React from 'react';
-import { View, Button, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import AddTask from '../NewTask.js';
+import NewTaskIcon from '../icons/iOSNewTask.js';
+import HomeIcon from '../icons/iOSHomeIcon.js';
+import BackIcon from '../icons/iOSBackArrow.js';
 
 export default class AddTaskScreen extends React.Component {
-  static navigationOptions = {
-    headerTitle: 'Add Task',
-    headerStyle: {
-      backgroundColor: '#455A64'
-    }
-  };
-
   constructor(props){
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
   }
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <NewTaskIcon/> ,
+      headerStyle: {
+        backgroundColor: '#464646'
+      },
+      headerLeft: (
+        <TouchableOpacity onPress={ () => navigation.goBack() }>
+          <BackIcon />
+        </TouchableOpacity>
+      ),
+      headerLeftContainerStyle: {
+        paddingLeft: 15
+      }
+    }
+  };
+
 
   handleFormSubmit(title, description, status, completionDate) {
     const currentUser = this.props.navigation.getParam('currentUser');
-    console.log(currentUser)
     let body = JSON.stringify({ todolist: { title: title, description: description, status: status, completion_date: completionDate } })
     fetch('https://smrmc.herokuapp.com/api/v1/todolist', {
       method: 'POST',
@@ -27,7 +39,14 @@ export default class AddTaskScreen extends React.Component {
       },
       body: body,
     }).then((response) => { return response.json() })
-      .then((task) => { this.props.navigation.goBack() })
+      .then((task) => Alert.alert(
+        'Task Added to ' + task[0].status,
+        'To be completed by: ' + task[0].completion_date,
+        [
+          { text: 'OK', onPress: () => this.props.navigation.goBack() },
+        ],
+        { cancelable: false }
+      ))
   }
 
   render() {
@@ -36,11 +55,9 @@ export default class AddTaskScreen extends React.Component {
         <View>
           <AddTask handleFormSubmit={this.handleFormSubmit}/>
         </View>
-        <Button
-          color='white'
-          title="Go to Home"
-          onPress={() => this.props.navigation.goBack()}
-        />
+        <TouchableOpacity style={styles.homeButton} onPress={() => this.props.navigation.goBack()}>
+          <HomeIcon />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -48,8 +65,13 @@ export default class AddTaskScreen extends React.Component {
 
 const styles = StyleSheet.create({
   newTaskBox: {
-    padding: '5%',
     height: '100%',
-    backgroundColor: '#263238'
-  }
+    backgroundColor: '#2d2d2d',
+    padding: '3%'
+  },
+  homeButton: { 
+    flex: 1, 
+    alignItems: 'center',
+    marginTop: 20
+   }
 })

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AwesomeProject",
-    "slug": "AwesomeProject",
+    "name": "SMRMC",
+    "slug": "smrmc",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [
@@ -14,7 +14,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#32393d"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,7 +23,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.matthewcross.smrmc"
+    },
+    "description": "Self Management App - To Do List Manager",
+    "githubUrl": "https://github.com/mattyc246/smrmc-react-native"
   }
 }

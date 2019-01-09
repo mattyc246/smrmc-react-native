@@ -26,7 +26,6 @@ export default class AllToDoList extends React.Component {
     })
     .then((response) => { if(response.statusText != 'No Content'){return response.json() }})
     .then((data) => {
-      console.log(data)
       if(data){
         this.setState({ todolist: data })
       }

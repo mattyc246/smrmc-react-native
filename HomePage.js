@@ -6,6 +6,7 @@ import UrgentScreen from './screens/UrgentScreen.js';
 import IncompleteScreen from './screens/IncompleteScreen.js';
 import PendingScreen from './screens/PendingScreen.js';
 import CompleteScreen from './screens/CompleteScreen.js';
+import InfoScreen from './screens/InfoScreen.js';
 
 const AppNavigator = createStackNavigator({
   Home: {
@@ -25,10 +26,15 @@ const AppNavigator = createStackNavigator({
   },
   Complete: {
     screen: CompleteScreen,
+  },
+  Info: {
+    screen: InfoScreen,
   }
 
 }, {
     initialRouteName: 'Home',
+    mode: 'modal',
+    headerMode: 'float'
   });
 
 
