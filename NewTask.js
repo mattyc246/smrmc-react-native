@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, TextInput, Picker, DatePickerIOS, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Picker, DatePickerIOS, StyleSheet, TouchableOpacity } from 'react-native';
 import OkIcon from './icons/iOSOkIcon.js';
 
 export default class NewTask extends React.Component {
@@ -26,7 +26,9 @@ export default class NewTask extends React.Component {
             <OkIcon />
         </TouchableOpacity>
         </View>
-      : <View style={styles.featureButton}><Button color='#1abc9c' onPress={() => this.setState({ chooseDate: true })} title="Choose Date" /></View>
+      : <TouchableOpacity style={styles.featureButton} onPress={() => this.setState({ chooseDate: true })}>
+          <Text style={{ fontFamily: 'Raleway', fontSize: 20, color: '#1abc9c', textAlign: 'center'}}>Choose Date</Text>
+        </TouchableOpacity>
     let statusPicker = this.state.chooseStatus
       ? <View style={styles.pickerBox}>
         <Picker itemStyle={{ color: 'black' }} onValueChange={(itemValue) => this.setState({ taskStatus: itemValue })} selectedValue={this.state.taskStatus} placeholder="Select status...">
@@ -39,7 +41,9 @@ export default class NewTask extends React.Component {
           <OkIcon />
         </TouchableOpacity>
         </View>
-      : <View style={styles.featureButton}><Button color='#1abc9c' onPress={() => this.setState({ chooseStatus: true })} title="Choose Status" /></View>
+      : <TouchableOpacity style={styles.featureButton} onPress={() => this.setState({ chooseStatus: true })}>
+          <Text style={{ fontFamily: 'Raleway', fontSize: 20, color: '#1abc9c', textAlign: 'center'}}>Choose Status</Text>
+        </TouchableOpacity>
   
     return (
     <View>
@@ -50,9 +54,9 @@ export default class NewTask extends React.Component {
       {statusPicker}
       <Text style={styles.bodyText}>Please choose a completion date...</Text>
       {datePicker}
-      <View style={styles.submitButton}>
-          <Button color='#27ae60' onPress={() => this.props.handleFormSubmit(this.state.taskTitle, this.state.taskDescription, this.state.taskStatus, this.state.taskCompletionDate)} title="Submit" />
-      </View>
+      <TouchableOpacity style={styles.submitButton} onPress={() => this.props.handleFormSubmit(this.state.taskTitle, this.state.taskDescription, this.state.taskStatus, this.state.taskCompletionDate)}>
+        <Text style={{ fontFamily: 'Raleway', fontSize: 20, color: '#27ae60', textAlign: 'center'}}>Submit</Text>
+      </TouchableOpacity>
     </View>
   )
   }
@@ -68,23 +72,27 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   headerText: {
+    fontFamily: 'Raleway',
     fontSize: 25,
     fontWeight: 'bold',
     color: '#bdbdbd',
     textAlign: 'center'
   },
   bodyText: {
+    fontFamily: 'Raleway',
     fontSize: 15,
     color: '#bdbdbd',
     marginTop: 10,
     marginBottom: 10
   },
   upperText: {
+    fontFamily: 'Raleway',
     fontSize: 15,
     color: '#bdbdbd',
     marginTop: 40
   },
   inputBox: {
+    fontFamily: 'Raleway',
     borderColor: '#bdbdbd',
     borderBottomWidth: 1,
     height: 40,
@@ -94,7 +102,7 @@ const styles = StyleSheet.create({
   featureButton: {
     backgroundColor: '#32393d',
     height: 55,
-    paddingTop: 10,
+    paddingTop: 15,
     marginTop: 10,
     borderRadius: 5
   },
@@ -108,7 +116,7 @@ const styles = StyleSheet.create({
   submitButton: {
     backgroundColor: '#32393d',
     height: 55,
-    paddingTop: 10,
+    paddingTop: 15,
     marginTop: 20,
     borderRadius: 5
   }

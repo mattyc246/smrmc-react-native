@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Dimensions from 'Dimensions';
 
 export default class LoginPage extends React.Component {
@@ -26,9 +26,9 @@ export default class LoginPage extends React.Component {
           <Text style={styles.loginTitle}>Sign In</Text>
           <TextInput style={styles.inputField} selectionColor={'#bdbdbd'} placeholderTextColor={'#bdbdbd'} onChangeText={(value) => { this.setState({ sessionUsername: value }) }} placeholder='Username / Email' />
           <TextInput style={styles.inputField} selectionColor={'#bdbdbd'} placeholderTextColor={'#bdbdbd'} onChangeText={(value) => { this.setState({ sessionPassword: value }) }} secureTextEntry={true} placeholder="Password" />
-          <View style={styles.loginButton} >
-            <Button color="white" onPress={() => { this.props.handleLoginSubmit(this.state.sessionUsername, this.state.sessionPassword) }} title="Log In" textStyle={{ fontFamily: 'Futura', fontWeight: '400' }}/>
-          </View>
+          <TouchableOpacity style={styles.loginButton} onPress={() => { this.props.handleLoginSubmit(this.state.sessionUsername, this.state.sessionPassword) }}>
+            <Text style={{ fontFamily: 'Raleway', color: '#bdbdbd', fontSize: 20, textAlign: 'center'}}>Log In</Text>
+          </TouchableOpacity>
         </View>
       </View>
     )
@@ -43,13 +43,13 @@ const styles = StyleSheet.create({
     height: height * 0.40,
   },
   headerText: {
-    fontFamily: 'Arial',
+    fontFamily: 'Raleway',
     fontSize: 50,
     fontWeight: 'bold',
     color: '#bdbdbd'
   },
   secondText: {
-    fontFamily: 'Arial',
+    fontFamily: 'Raleway',
     fontSize: 20,
     color: '#bdbdbd'
   },
@@ -58,14 +58,14 @@ const styles = StyleSheet.create({
     padding: '5%',
   },
   loginTitle: {
-    fontFamily: 'Arial',
+    fontFamily: 'Raleway',
     marginTop: 40,
     fontSize: 25,
     color: '#bdbdbd',
     fontWeight: '800',
   },
   inputField: {
-    fontFamily: 'Arial',
+    fontFamily: 'Raleway',
     height: 40,
     borderColor: '#bdbdbd',
     borderBottomWidth: 1.5,
@@ -76,9 +76,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#C91F37',
     width: width * 0.95,
     height: 60,
-    padding: '3%',
+    padding: '5%',
     marginTop: 90,
     borderRadius: 10,
-    color: '#bdbdbd'
+    fontFamily: 'Raleway'
   }
 })

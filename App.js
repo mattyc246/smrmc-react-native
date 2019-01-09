@@ -2,13 +2,15 @@ import React from 'react';
 import { ScrollView, 
          StyleSheet,
          View,
-         Button,
+         TouchableOpacity,
+         Text,
          KeyboardAvoidingView,
          AsyncStorage } from 'react-native';
 import Dimensions from 'Dimensions';
 import HomePage from './HomePage.js';
 import LoginPage from './LoginPage.js';
 import LoadingScreen from './LoadingScreen.js';
+import { Font } from 'expo';
 
 export default class App extends React.Component {
 
@@ -16,13 +18,22 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       currentUser: null,
-      isLoading: false
+      isLoading: false,
+      fontLoaded: false
     }
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  componentDidMount(){
+  async componentDidMount(){
+    await Font.loadAsync({
+      'Thasadith': require('./assets/fonts/Thasadith-Regular.ttf'),
+      'Raleway': require('./assets/fonts/Raleway-Regular.ttf'),
+      'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf')
+    });
+    this.setState({
+      fontLoaded: true
+    })
     setUser = async() => {
       try{
         const value = await AsyncStorage.getItem('token');
@@ -110,9 +121,9 @@ export default class App extends React.Component {
       ? <View>
           <View style={styles.navigatorBox}>
             <HomePage currentUser={this.state.currentUser} />
-            <View style={styles.logoutButton}>
-              <Button onPress={() => this.handleLogout()} title="Logout" color="white" />
-            </View>
+            <TouchableOpacity onPress={() => this.handleLogout()}>
+              <Text style={styles.logoutButton}>Log Out</Text>
+            </TouchableOpacity>
           </View>
         </View>
       : <LoginPage handleLoginSubmit={this.handleLoginSubmit} />
@@ -123,7 +134,7 @@ export default class App extends React.Component {
         <KeyboardAvoidingView behavior="padding" enabled>
           <ScrollView bounces={false}>
             <View style={styles.container}>
-              {loadingState}
+              {this.state.fontLoaded ? (loadingState) : null}
             </View>
           </ScrollView>
         </KeyboardAvoidingView>
@@ -148,6 +159,11 @@ const styles = StyleSheet.create({
   logoutButton: {
     backgroundColor: '#C91F37',
     width: width,
-    color: 'white'
+    color: '#bdbdbd',
+    fontFamily: 'Raleway',
+    textAlign: 'center',
+    fontSize: 20,
+    height: 40,
+    padding: 7
   },
 });

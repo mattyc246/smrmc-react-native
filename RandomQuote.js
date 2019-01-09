@@ -53,15 +53,18 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
   headerText: {
+    fontFamily: 'Raleway',
     fontSize: 25,
     fontWeight: 'bold',
     color: 'black'
   },
   secondText: {
+    fontFamily: 'Raleway',
     fontSize: 20,
     color: 'black'
   },
   authorText: {
+    fontFamily: 'Raleway',
     color: 'black'
   },
   emptySpace: {

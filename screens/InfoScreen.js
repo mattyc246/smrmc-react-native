@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   titleText: {
+    fontFamily: 'Raleway',
     color: '#bdbdbd',
     textDecorationLine: 'underline',
     fontWeight: 'bold',
@@ -91,12 +92,14 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   subtitleText: {
+    fontFamily: 'Raleway',
     color: '#bdbdbd',
     textDecorationLine: 'underline',
     fontWeight: 'bold',
     fontSize: 20,
   },
   bodyText: {
+    fontFamily: 'Raleway',
     color: '#bdbdbd',
     fontSize: 15
   }

@@ -35,9 +35,9 @@ export default class Task extends React.Component {
 
   render(){
     let chooseDate = !this.state.editDate
-      ? <View style={styles.editButton}>
-          <Button color='#f39c12' onPress={() => this.setState({ editDate: true })} title="Edit Completion Date" />
-        </View>
+      ? <TouchableOpacity style={styles.editButton} onPress={() => this.setState({ editDate: true })}>
+          <Text style={{ fontFamily: 'Raleway', fontSize: 20, color: '#f39c12', textAlign: 'center' }}>Edit Completion Date</Text>
+        </TouchableOpacity>
       : <View style={styles.pickerBox}>
           <DatePickerIOS onDateChange={(date) => this.setState({ currentDate: date })} ref={input => this.completion_date = input} date={this.state.currentDate} mode="date" />
           <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => this.setState({ editDate: false })}>
@@ -45,9 +45,9 @@ export default class Task extends React.Component {
           </TouchableOpacity>
         </View>
     let chooseStatus = !this.state.editStatus
-      ? <View style={styles.editButton}>
-          <Button color='#f39c12' onPress={() => this.setState({ editStatus: true })} title="Edit Status" />
-        </View>
+      ? <TouchableOpacity style={styles.editButton} onPress={() => this.setState({ editStatus: true })} >
+          <Text style={{ fontFamily: 'Raleway', fontSize: 20, color: '#f39c12', textAlign: 'center' }}>Edit Status</Text>
+        </TouchableOpacity>
       : <View style={styles.pickerBox}>
           <Picker onValueChange={(itemValue) => this.setState({ currentStatus: itemValue })} ref={input => this.status = input} selectedValue={this.state.currentStatus}>
             <Picker.Item label="Urgent!" value="URGENT!" />
@@ -83,12 +83,12 @@ export default class Task extends React.Component {
         {date}
         {status}
         {description}
-        <View style={styles.editButton}>
-          <Button color="#f39c12" onPress={() => this.handleEdit()} title={this.state.editable ? 'Submit' : 'Edit'} />
-        </View>
-        <View style={styles.removeButton}>
-          <Button color="#c0392b" onPress={() => this.props.handleDelete(this.props.task.id)} title="Remove Task"/>
-        </View>
+        <TouchableOpacity style={styles.editButton} onPress={() => this.handleEdit()} >
+          <Text style={{ fontFamily: 'Raleway', fontSize: 20, color: '#f39c12', textAlign: 'center' }}>{this.state.editable ? 'Submit' : 'Edit'}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.removeButton} onPress={() => this.props.handleDelete(this.props.task.id)}>
+          <Text style={{ fontFamily: 'Raleway', fontSize: 20, color: '#c0392b', textAlign: 'center' }}>Remove Task</Text>
+        </TouchableOpacity>
       </View>
     )
 
@@ -104,19 +104,23 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   titleText: {
+    fontFamily: 'Raleway-Bold',
     color: '#bdbdbd',
     fontSize: 25,
     fontWeight: 'bold'
   },
   statusText: {
+    fontFamily: 'Raleway',
     color: '#bdbdbd',
     fontSize: 20
   },
   dateText: {
+    fontFamily: 'Raleway',
     color: '#bdbdbd',
     fontSize: 15
   },
   descriptionText: {
+    fontFamily: 'Raleway',
     color: '#bdbdbd',
     fontSize: 20
   },
@@ -125,14 +129,14 @@ const styles = StyleSheet.create({
     height: 55,
     marginTop: 15,
     borderRadius: 5,
-    paddingTop: 10
+    paddingTop: 15
   },
   removeButton: {
     backgroundColor: '#32393d',
     height: 55,
     marginTop: 15,
     borderRadius: 5,
-    paddingTop: 10
+    paddingTop: 15
   },
   inputField: {
     borderColor: '#bdbdbd',
